@@ -238,8 +238,36 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
-              <form action="mailto:kim.zuercher@kimzo.net" method="post" encType="text/plain" className="space-y-6">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget as HTMLFormElement;
+                  const formData = new FormData(form);
+                  const payload = {
+                    name: String(formData.get("name") || ""),
+                    email: String(formData.get("email") || ""),
+                    message: String(formData.get("message") || ""),
+                  };
+                  try {
+                    const res = await fetch("/api/contact", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(payload),
+                    });
+                    if (!res.ok) throw new Error("Failed to send");
+                    const data = await res.json().catch(() => ({}));
+                    if (data && (data as any).previewUrl) {
+                      alert(`Message sent! Preview: ${(data as any).previewUrl}`);
+                    } else {
+                      alert("Message sent! I'll get back to you soon.");
+                    }
+                    form.reset();
+                  } catch (err) {
+                    alert("Sorry, something went wrong. Please try again later.");
+                  }
+                }}
+                className="space-y-6"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-white/60 mb-2 uppercase tracking-wide">Name</label>
