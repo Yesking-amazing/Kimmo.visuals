@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -127,13 +126,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-8 pt-32 pb-24">
           <div className="flex flex-col items-center text-center">
             <div className="mb-8">
-              <Image
+              <img
                 src="/kim-portrait.jpg"
                 alt="Kim Zürcher portrait"
                 width={100}
                 height={100}
                 className="h-16 w-16 rounded-full object-cover ring-2 ring-white/10"
-                priority
               />
             </div>
             <h1 className="mb-4 text-5xl font-bold tracking-tighter sm:text-6xl lg:text-7xl">
@@ -183,7 +181,7 @@ export default function Home() {
             </div>
             <div>
               <div className="mx-auto w-full max-w-sm overflow-hidden rounded-xl border border-white/10">
-                <Image src="/kim-portrait.jpg" alt="Kim Zürcher portrait" width={800} height={1000} className="h-auto w-full object-cover" />
+                <img src="/kim-portrait.jpg" alt="Kim Zürcher portrait" width={800} height={1000} className="h-auto w-full object-cover" />
               </div>
             </div>
           </div>
@@ -285,6 +283,7 @@ export default function Home() {
                 <button type="submit" className="inline-flex items-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-black hover:bg-white/90 transition-colors">
                   SEND MESSAGE
                 </button>
+                                   
               </form>
             </div>
           </div>

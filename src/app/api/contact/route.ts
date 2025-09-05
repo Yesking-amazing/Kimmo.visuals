@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 import { Resend } from "resend";
 import nodemailer from "nodemailer";
 
